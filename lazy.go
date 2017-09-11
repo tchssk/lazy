@@ -60,9 +60,9 @@ func (s *Stmt) Query(args ...interface{}) (*sql.Rows, error) {
 // It executes a query directly if the creation has failed.
 func (s *Stmt) QueryContext(ctx context.Context, args ...interface{}) (*sql.Rows, error) {
 	if s.Stmt() != nil {
-		return s.stmt.Query(ctx, args...)
+		return s.stmt.QueryContext(ctx, args...)
 	}
-	return s.db.Query(ctx, s.query, args...)
+	return s.db.QueryContext(ctx, s.query, args...)
 }
 
 // QueryRow executes a query that is expected to return at most one row.
@@ -82,7 +82,7 @@ func (s *Stmt) QueryRowContext(ctx context.Context, args ...interface{}) *sql.Ro
 	if s.Stmt() != nil {
 		return s.stmt.QueryRowContext(ctx, args...)
 	}
-	return s.db.QueryRow(ctx, s.query, args...)
+	return s.db.QueryRowContext(ctx, s.query, args...)
 }
 
 // Stmt returns a prepared statement. It tries to create the statement if
