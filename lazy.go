@@ -98,3 +98,8 @@ func (s *Stmt) Stmt() *sql.Stmt {
 	s.stmt = stmt
 	return s.stmt
 }
+
+// Raw returns a query string
+func (s *Stmt) Raw() string {
+	return s.query
+}
